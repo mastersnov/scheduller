@@ -135,7 +135,11 @@
           <tr>
             <th>Day</th>
             <th>All</th>
-            <th v-for="h in hours" :key="h">{{ h }}</th>
+            <template v-for="(h, ndx) in hours" :key="h">
+              <th v-if="ndx % 3 === 0" colspan="3" class="text-left">
+                {{ ndx % 3 === 0 ? h : '' }}
+              </th>
+            </template>
           </tr>
         </thead>
         <tbody>
@@ -165,7 +169,6 @@
       </table>
     </div>
 
-    <!-- Кнопки -->
     <div class="actions">
       <button @click="clear">Clear</button>
       <button @click="emitSave">Save Changes</button>
@@ -175,19 +178,23 @@
 
 <style scoped>
   .scheduler {
-    max-width: 900px;
+    width: 500px;
     margin: 20px auto;
     font-family: sans-serif;
     user-select: none;
   }
 
   .table-wrapper {
+    width: 100%;
+    margin: 0 auto;
     overflow-x: auto;
   }
 
   table {
     border-collapse: collapse;
-    width: 100%;
+    max-width: 100%;
+    min-width: 450px;
+    margin: 0 auto;
   }
 
   th,
@@ -209,7 +216,7 @@
   }
 
   .hour-cell {
-    width: 20px;
+    width: 10px;
     height: 20px;
     cursor: pointer;
   }
@@ -236,5 +243,9 @@
 
   button:hover {
     background: #555;
+  }
+
+  .text-left {
+    text-align: left;
   }
 </style>
