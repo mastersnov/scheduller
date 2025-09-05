@@ -157,7 +157,7 @@
 
             <!-- Часы -->
             <td
-              v-for="hi in 24"
+              v-for="(h, hi) in 24"
               :key="`${day.id}-${hi}`"
               class="hour-cell"
               :class="{ active: schedule[di][hi] }"
